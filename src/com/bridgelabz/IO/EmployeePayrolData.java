@@ -1,5 +1,4 @@
 package com.bridgelabz.IO;
-
 public class EmployeePayrolData {
     int id;
     String name;

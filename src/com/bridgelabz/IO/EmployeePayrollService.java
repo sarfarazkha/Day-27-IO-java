@@ -1,15 +1,14 @@
 package com.bridgelabz.IO;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
-public class EmployeePayrollService<T> {
+public class EmployeePayrollService {
 
     public static Scanner sc = new Scanner(System.in);
 
     public enum IOService {
-        File_IO, Console_IO;
+        File_IO, Console_IO
     }
 
     List<EmployeePayrolData> payrollList;
@@ -37,9 +36,8 @@ public class EmployeePayrollService<T> {
     }
 
     private void readEmployeePayrollData() {
-        Iterator iterator = payrollList.iterator();
-        while (iterator.hasNext()) {
-            System.out.println(iterator.next() + " ");
+        for (EmployeePayrolData employeePayrollData : payrollList) {
+            System.out.println(employeePayrollData + " ");
         }
     }
 }
