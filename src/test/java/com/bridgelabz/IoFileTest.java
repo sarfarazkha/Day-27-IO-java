@@ -1,6 +1,7 @@
 package com.bridgelabz;
 
 
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
@@ -11,22 +12,22 @@ import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 
-class IOFileTest {
+class IoFileTest {
 
     private static String HOME = "D:\\GitProgram\\Day27_IO\\src\\main\\java\\com\\bridgelabz";
-    private static String PLAY_WITH_NIO = "TempPlayGround";
+    private static String PLAY_WITH_IO = "TempPlayGround";
 
     @Test
+
     public void givenPathWhenCheckedThenConfirm() throws IOException {
 
         Path homePath = Paths.get(HOME);
         assertTrue(Files.exists(homePath));
         System.out.println(homePath);
 
-        Path playPath = Paths.get(HOME + "/" + PLAY_WITH_NIO);
+        Path playPath = Paths.get(HOME + "/" + PLAY_WITH_IO);
         if (Files.exists(playPath))
             FileUtility.deleteFiles(playPath.toFile());
-
         assertTrue(Files.notExists(playPath));
 
         Files.createDirectory(playPath);
@@ -41,6 +42,8 @@ class IOFileTest {
             }
             assertTrue(Files.exists(tempFile));
         });
+
+
         System.out.println("Files.list");
         Files.list(playPath).filter(Files::isRegularFile).forEach(System.out::println);
         System.out.println("Files.newDirectory");
