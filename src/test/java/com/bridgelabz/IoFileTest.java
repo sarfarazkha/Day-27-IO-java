@@ -1,6 +1,6 @@
 package com.bridgelabz;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,14 +8,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.IntStream;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class NIOFileAPITest {
-    private static String HOME = "D:\\GitProgram\\Day27_IO\\src\\main\\java\\com\\bridgelabz";
+
+    private static String HOME = "D:\\GitProgram\\Day27_IO\\src";
     private static String PLAY_WITH_NIO = "TempPlayGround";
 
     @Test
-
     public void givenPathWhenCheckedThenConfirm() throws IOException {
 
         Path homePath = Paths.get(HOME);
@@ -47,5 +47,11 @@ class NIOFileAPITest {
         System.out.println("Files.newDirectory with temp");
         Files.newDirectoryStream(playPath, path -> path.toFile().isFile() && path.toString().contains("temp"))
                 .forEach(System.out::println);
+    }
+
+    public void givenADirectoryWhenWatchedListsAllTheActivities() throws IOException {
+        Path dir = Paths.get(HOME + "/" + PLAY_WITH_NIO);
+        Files.list(dir).filter(Files::isRegularFile).forEach(System.out::println);
+        new WatchServices(dir).processEvents();
     }
 }

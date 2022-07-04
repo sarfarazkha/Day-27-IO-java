@@ -15,20 +15,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WatchServices {
+
     private static final Kind<?> ENTRY_DELETE = null;
     private static final Kind<?> ENTRY_MODIFY = null;
     private static final Kind<?> ENTRY_CREATE = null;
-    private final WatchService watcher;
+    private final WatchServices watcher;
     private final Map<WatchKey, Path> dirWatchers;
 
     public WatchServices(Path dir) throws IOException {
-        this.watcher = FileSystems.getDefault().newWatchService();
+        this.watcher = (WatchServices) FileSystems.getDefault().newWatchService();
         this.dirWatchers = new HashMap<WatchKey, Path>();
         scanAndRegisterDirectories(dir);
     }
 
     private void registerDirWatchers(Path dir) throws IOException {
-        WatchKey key = dir.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
+        WatchKey key = dir.register((WatchService) watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
         dirWatchers.put(key, dir);
     }
 
@@ -79,5 +80,10 @@ public class WatchServices {
                     break;
             }
         }
+
     }
-}
+        private WatchKey take () {
+
+            return null;
+        }
+    }
