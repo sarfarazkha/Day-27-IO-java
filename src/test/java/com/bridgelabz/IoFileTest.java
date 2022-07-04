@@ -1,7 +1,5 @@
 package com.bridgelabz;
 
-
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
@@ -12,10 +10,9 @@ import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 
-class IoFileTest {
-
+class NIOFileAPITest {
     private static String HOME = "D:\\GitProgram\\Day27_IO\\src\\main\\java\\com\\bridgelabz";
-    private static String PLAY_WITH_IO = "TempPlayGround";
+    private static String PLAY_WITH_NIO = "TempPlayGround";
 
     @Test
 
@@ -25,7 +22,7 @@ class IoFileTest {
         assertTrue(Files.exists(homePath));
         System.out.println(homePath);
 
-        Path playPath = Paths.get(HOME + "/" + PLAY_WITH_IO);
+        Path playPath = Paths.get(HOME + "/" + PLAY_WITH_NIO);
         if (Files.exists(playPath))
             FileUtility.deleteFiles(playPath.toFile());
         assertTrue(Files.notExists(playPath));
@@ -42,7 +39,6 @@ class IoFileTest {
             }
             assertTrue(Files.exists(tempFile));
         });
-
 
         System.out.println("Files.list");
         Files.list(playPath).filter(Files::isRegularFile).forEach(System.out::println);
